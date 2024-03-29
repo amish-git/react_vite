@@ -25,15 +25,15 @@ jobs:
         yarn install
         yarn build
 
-    # - name: Increase package.json version
-    #   run: |
-    #       git config --global user.name 'amish-git'
-    #       git config --global user.email 'amishthapa72@gmail.com'
-    #       npm version patch --no-git-tag-version
-    #       git add package.json
-    #       git commit -m "Increase package.json version and push"
+    - name: Increase package.json version
+      run: |
+          git config --global user.name 'amish-git'
+          git config --global user.email 'amishthapa72@gmail.com'
+          npm version patch --no-git-tag-version
+          git add package.json
+          git commit -m "Increase package.json version and push"
           
-    #       git push https://Amish Thapa${{ secrets.GIT_TOKEN }}@github.com/amish-git/react_vite.git "main"
+          git push https://${{ secrets.GIT_TOKEN }}@github.com/amish-git/react_vite.git "main"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
