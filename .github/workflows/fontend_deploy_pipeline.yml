@@ -1,20 +1,19 @@
 name: Frontend Build and Deploy to s3.
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
-
 
 on:
   push:
     branches: [ "main" ]
 
+env:
+  GH_TOKEN: ${{ secretes.GIT_TOKEN }}
 
 jobs:
   build_and_deploy_job:
     name: Make dist package
     runs-on: self-hosted
-   
+    permissions:
+      contents: read
+      issues: write   
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -38,7 +37,7 @@ jobs:
           git add package.json
           git commit -m "Increase package.json version and push"
           
-          git push https://${{ secrets.GIT_TOKEN }}@github.com/amish-git/react_vite.git "main"
+          git push https://$GH_TOKEN@github.com/amish-git/react_vite.git "main"
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
