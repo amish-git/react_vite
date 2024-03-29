@@ -1,4 +1,9 @@
 name: Frontend Build and Deploy to s3.
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 
 on:
   push:
